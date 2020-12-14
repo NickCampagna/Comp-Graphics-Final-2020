@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<title>2D Sierpinski Gasket</title>
+
+<select id="shapeMenu" size="9">
+  <option value="0">Line</option>
+  <option value="1">Poly-Line</option>
+  <option value="2">Square</option>
+  <option value="3">Rectangle</option>
+  <option value="4">Triangle</option>
+  <option value="5">Polygon</option>
+  <option value="6">Circle</option>
+  <option value="7">Ellipse</option>
+  <option value="8">Curve</option>
+</select>
+
+<select id="transformMenu" size="3">
+  <option value="0">Translate</option>
+  <option value="1">Scale</option>
+  <option value="2">Rotate</option>
+</select>
+<br>
+Instructions: Select a shape and/or transformation above, fill out whatever information is required below.<br>
+"Display Shape" creates a shape of your selection with default coordinates, BUT if you'd rather draw it, click "Enable Shape Drawing"<br>
+To draw your shape, click on the canvas. With most shapes, you only need to click two (or three, if drawing a triangle) times.<br>
+If you're drawing a poly-line or polygon, you can click an infinite number of times, then finish by right-clicking to mark the final point.<br>
+Shape ID is for selecting the shape you'd like to transform by it's numerical ID. The first shape drawn has an ID of 0, the next one's is 1, etc...<br>
+dX and dY are for describing "how much" the shape should be transformed by. (dX: 20, dY: 20 on Translate moves the shape 20px right and down).<br>
+(only dX is used for Rotate) <br>
+The R, G, B fields are for selecting color for the next shape drawn. <br>
+<br>
+<form id="form" action="javascript:void(0);">
+  <label for="shapeID">Shape ID to transform:</label>
+  <input type="text" name="shapeID">
+  <br>
+  <div>Degrees of Transformation:</div>
+  <label for="dx">dX:</label>
+  <input type="text" name="dx">
+  <label for="dy">dY:</label>
+  <input type="text" name="dy">
+  <br>
+  <label for="Red">R:</label>
+  <input type="text" name="Red">
+  <label for="Green">G:</label>
+  <input type="text" name="Green">
+  <label for="Blue">B:</label>
+  <input type="text" name="Blue">
+</form>
+
+
+
+<button id="DisplayButton">Display Shape</button>
+<button id="TransformButton">Transform Shape</button>
+<button id="ClearButton">Clear</button>
+<br>
+<button id="DrawButton">Enable Shape Drawing (Click on Canvas)</button>
+<button id="CancelButton">Cancel Shape Drawing</button>
+<br>
+
+<!-- https://stackoverflow.com/questions/17397319/save-canvas-as-jpg-to-desktop
+ and https://www.w3schools.com/tags/tryit.asp?filename=tryhtml5_a_download
+were handy for this button -->
+<a id="downloadButton" download>
+  <img src="../images/downloadButtonImage.jpg">
+</a>
+<button id="SaveJSON">Save to JSON</button>
+<button id="LoadJSON">Load from JSON</button>
+<br>
+<div id="status">Status: Loading JavaScript (or it's broken)</div>
+<br>
+<script id="vertex-shader" type="x-shader/x-vertex">
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment" src="fragment-shader">
+</script>
+
+<script type="text/javascript" src="../Common/webgl-utils.js"></script>
+<script type="text/javascript" src="../Common/initShaders.js"></script>
+<script type="text/javascript" src="../Common/MV.js"></script>
+<script type="text/javascript" src="gasket1.js"></script>
+</head>
+
+<body style="background-color:SteelBlue; color: white;">
+<canvas id="circ-canvas" width="512" height="512">
+Oops ... your browser doesn't support the HTML5 canvas element
+</canvas>
+</body>
+</html>
